@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 const SECRET = 'secretSauce'
 
 const userModel = (sequelize, DataTypes) => {
-  const users = sequelize.define('User', {
+  const users = sequelize.define('Userz', {
     username: {
       type: DataTypes.STRING,
       allowNull : false,
@@ -19,10 +19,10 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    // role: {
-    //   type:DataTypes.ENUM('user', 'writer', 'editor', 'admin'),
-    //   defaultValue: 'user'
-    // },
+    role: {
+      type: DataTypes.ENUM('user', 'writer', 'editor', 'admin'),
+      defaultValue: 'user'
+    },
     token: {
       type: DataTypes.VIRTUAL,
       get() {
@@ -31,7 +31,11 @@ const userModel = (sequelize, DataTypes) => {
 
         // #### TESTING THIS BY BREAKING IT
         // return jwt.sign(this.username, SECRET)
-        return jwt.sign({ username: this.username}, SECRET)
+        return jwt.sign(
+          { username: this.username}, 
+          SECRET, 
+          // { expiresIn: '10m' } 
+        )
       },
       // set(TokenObj) {
       //   let token = jwt.sign(TokenObj, SECRET);
@@ -39,18 +43,18 @@ const userModel = (sequelize, DataTypes) => {
       // }
     },
     
-    // capabilities: {
-    //   type: DataTypes.VIRTUAL,
-    //   get() {
-    //     const acl = {
-    //       user: ['read'],
-    //       writer: ['read', 'create'],
-    //       editor: ['read', 'create', 'update'],
-    //       admin: ['read', 'create', 'update', 'delete']
-    //     }
-    //     return acl[this.role]
-    //   }
-    // }
+    capabilities: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        const acl = {
+          user: ['read'],
+          writer: ['read', 'create'],
+          editor: ['read', 'create', 'update'],
+          admin: ['read', 'create', 'update', 'delete']
+        }
+        return acl[this.role]
+      }
+    }
     
   });
 

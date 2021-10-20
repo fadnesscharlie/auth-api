@@ -39,7 +39,7 @@ describe('Auth Middleware', () => {
         authorization: 'Bearer thisisabadtoken',
       };
 
-      return middleware(users)(req, res, next)
+      return middleware(req, res, next)
         .then(() => {
           expect(next).not.toHaveBeenCalled();
           expect(res.status).toHaveBeenCalledWith(403);

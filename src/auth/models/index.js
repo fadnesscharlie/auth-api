@@ -3,7 +3,6 @@
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize');
 const userModel = require('./users.js');
-// console.log('userModel', userModel)
 
 // const DATABASE_URL = process.env.DATABASE_URL || 'postgres://localhost:5432/basic-auth';
 

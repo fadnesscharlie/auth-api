@@ -1,20 +1,19 @@
 'use strict';
 
-
 // Want access to something
 
-module.exports = (capabilities) => {
+module.exports = (capability) => {
   // middleware code runs
   return ( req, res, next) => {
     // we have access to the parameter capabilities
     // We are expecting bearerAuth middleware to have put the correct user object in our request
     // Inspect the users capabilities
-      // If goos, pass next()
+      // If good, pass next()
     // Using try/catch to avoid deeply checking the object 
     // We wanna handle rejections and errors
     try {
       console.log('capabilites', req.user.capabilities)
-      if (req.headers.authorization.includes(capabilities)) {
+      if (req.users.capabilities.includes(capability)) {
         next();
       } else {
         next('Access Denied');
