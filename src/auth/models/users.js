@@ -19,6 +19,10 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    // role: {
+    //   type:DataTypes.ENUM('user', 'writer', 'editor', 'admin'),
+    //   defaultValue: 'user'
+    // },
     token: {
       type: DataTypes.VIRTUAL,
       get() {
@@ -34,6 +38,20 @@ const userModel = (sequelize, DataTypes) => {
       //   return token;
       // }
     },
+    
+    // capabilities: {
+    //   type: DataTypes.VIRTUAL,
+    //   get() {
+    //     const acl = {
+    //       user: ['read'],
+    //       writer: ['read', 'create'],
+    //       editor: ['read', 'create', 'update'],
+    //       admin: ['read', 'create', 'update', 'delete']
+    //     }
+    //     return acl[this.role]
+    //   }
+    // }
+    
   });
 
   users.beforeCreate(async (user) => {
