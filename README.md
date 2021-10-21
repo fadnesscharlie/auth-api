@@ -1,4 +1,4 @@
-# bearer-auth
+# Auth-Api
 
 ## Auth
 
@@ -48,9 +48,43 @@ POST route for `/secret`
 Using middleware, we authicate your information to view specialized secret documents
 ```
 
+## Restful API
+
+We have two versions.
+
+- `/api/v1/food` is REST without middleware auth
+  - This is our test routes. To make sure everything works as we want.
+- `/api/v2/food` is REST with middleware auth
+  - Here we have roles set, the level of role will depend on how many things you can complete with a RESTful API.
+
+
+Get route for `/get` `/api/v#/food`
+
+```
+Using REST we grab all our data, if you add "/api/v#/food/#", you can view a specific entry 
+```
+
+Post route for `/post` `/api/v#/food`
+
+```
+Using REST we can post data into our server. Models using "name", "filling", and "frosting"
+```
+
+Update route for `/put` `/api/v#/food/#`
+
+```
+Using REST we can update data into our server depending on the specific entry. Models using "name", "filling", and "frosting" to update the entry
+```
+
+Delete route for `/delete` `/api/v#/food/#`
+
+```
+Using REST we can delete data into our server depending on the specific entry.
+```
+
 ## Whiteboard UML
 
-![Auth](img/Lab-07-UML.png)
+![Auth](img/lab-08-UML.png)
 
 ## Routes
 
@@ -62,7 +96,12 @@ Using middleware, we authicate your information to view specialized secret docum
 /users
 
 /secret
+
+/api/v1/food
+
+/api/v1/food
 ```
+
 ## Install
 
 ```
@@ -77,7 +116,7 @@ npm run dev
 
 ## Deployment
 
-[Heroku Deployment](https://bearer-auth-401n19.herokuapp.com/)
+[Heroku Deployment](https://auth-api-401n19.herokuapp.com/)
 
 ## Collaboration
 

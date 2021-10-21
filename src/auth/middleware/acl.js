@@ -13,7 +13,7 @@ module.exports = (capability) => {
     // We wanna handle rejections and errors
     try {
       console.log('capabilites', req.user.capabilities)
-      if (req.users.capabilities.includes(capability)) {
+      if (req.user.capabilities.includes(capability)) {
         next();
       } else {
         next('Access Denied');
