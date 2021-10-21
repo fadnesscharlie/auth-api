@@ -8,6 +8,8 @@ const morgan = require('morgan');
 const errorHandlers = require('./error-handlers/500.js');
 const notFound = require('./error-handlers/404.js');
 const authRouter = require('./auth/routes.js');
+const authRouterV2 = require('./auth/v2Routes.js');
+const authRouterV1 = require('./auth/v1Routes.js');
 
 // Express App
 const app = express();
@@ -22,8 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
   res.status(200).send('Its ALIVE')
 })
-
 app.use(authRouter);
+app.use('/api/v1', authRouterV1);
+app.use('/api/v2', authRouterV2);
 
 // CatchAlls
 app.use('*', notFound);

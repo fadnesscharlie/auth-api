@@ -55,7 +55,6 @@ const userModel = (sequelize, DataTypes) => {
         return acl[this.role]
       }
     }
-    
   });
 
   users.beforeCreate(async (user) => {
